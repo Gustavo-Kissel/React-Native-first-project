@@ -1,6 +1,7 @@
 import { StyleSheet, TextInput, TouchableOpacity } from 'react-native'
 
 import { Text, View } from '../../components/Themed'
+import { Participant } from '../../components/Participant'
 
 export default function TabOneScreen() {
   function handleParticipantAdd() {
@@ -24,6 +25,9 @@ export default function TabOneScreen() {
           <Text style={styles.buttonText}>+</Text>
         </TouchableOpacity>
       </View>
+      <Participant name="Gustavo Kissel" />
+      <Participant name="Bernardo Batistelli" />
+      <Participant name="Eduzzão" />
     </View>
   )
 }
