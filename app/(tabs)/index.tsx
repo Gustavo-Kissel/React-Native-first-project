@@ -9,29 +9,33 @@ import {
 
 import { Text, View } from '../../components/Themed'
 import { Participant } from '../../components/Participant'
+import { useState } from 'react'
 
 export default function TabOneScreen() {
-  const participants = ['Gustavo', 'Teste1', 'Test2']
+  const [participants, setParticipants] = useState(['Gustavo'])
+  const [participantName, setParticipantName] = useState('')
 
   function handleParticipantAdd(name: string) {
     if (participants.includes(name)) {
       return Alert.alert(`O participante com o nome ${name} já existe`)
     }
-    console.log('participant remove' + name)
+    setParticipants([...participants, name])
   }
 
   function handleParticipantRemove(name: string) {
     Alert.alert('Remover', `Você deseja mesmo remover ${name}?`, [
       {
         text: 'Sim',
-        onPress: () => Alert.alert('Deletado !!'),
+        onPress: () => {
+          Alert.alert('Deletado !!')
+        },
       },
       {
         text: 'Não',
         style: 'cancel',
       },
     ])
-    console.log('participant remove' + name)
+    console.log('participant remove ' + name)
   }
 
   return (
@@ -45,12 +49,13 @@ export default function TabOneScreen() {
           style={styles.input}
           placeholder="Nome do participante"
           placeholderTextColor="#6B6B6B"
+          onChangeText={(text) => setParticipantName(text)}
         />
 
         <TouchableOpacity
           style={styles.button}
           onPress={() => {
-            handleParticipantAdd('okrl')
+            handleParticipantAdd(participantName)
           }}
         >
           <Text style={styles.buttonText}>+</Text>
