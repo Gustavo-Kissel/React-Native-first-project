@@ -1,11 +1,23 @@
-import { StyleSheet, TextInput, TouchableOpacity } from 'react-native'
+import {
+  FlatList,
+  ScrollView,
+  StyleSheet,
+  TextInput,
+  TouchableOpacity,
+} from 'react-native'
 
 import { Text, View } from '../../components/Themed'
 import { Participant } from '../../components/Participant'
 
 export default function TabOneScreen() {
+  const participants = ['Gustavo', 'Teste1', 'Test2']
+
   function handleParticipantAdd() {
     console.log('Você clicou no botão de Adicionar!')
+  }
+
+  function handleParticipantRemove(name: string) {
+    console.log('participant remove' + name)
   }
 
   return (
@@ -25,9 +37,20 @@ export default function TabOneScreen() {
           <Text style={styles.buttonText}>+</Text>
         </TouchableOpacity>
       </View>
-      <Participant name="Gustavo Kissel" />
-      <Participant name="Bernardo Batistelli" />
-      <Participant name="Eduzzão" />
+
+      <FlatList
+        data={participants}
+        keyExtractor={(item) => item}
+        renderItem={({ item }) => (
+          <Participant
+            key={item}
+            name={item}
+            onRemove={() => {
+              handleParticipantRemove(item)
+            }}
+          />
+        )}
+      />
     </View>
   )
 }
