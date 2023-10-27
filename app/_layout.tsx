@@ -4,6 +4,7 @@ import { DarkTheme, ThemeProvider } from '@react-navigation/native'
 import { useFonts } from 'expo-font'
 import { SplashScreen, Stack } from 'expo-router'
 import { useEffect } from 'react'
+import { StatusBar } from 'react-native'
 export {
   // Catch any errors thrown by the Layout component.
   ErrorBoundary,
@@ -44,6 +45,7 @@ export default function RootLayout() {
 function RootLayoutNav() {
   return (
     <ThemeProvider value={DarkTheme}>
+      <StatusBar barStyle={'light-content'} backgroundColor={'transparent'} />
       <Stack>
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
       </Stack>
