@@ -1,7 +1,6 @@
 import {
   Alert,
   FlatList,
-  ScrollView,
   StyleSheet,
   TextInput,
   TouchableOpacity,
@@ -27,6 +26,9 @@ export default function TabOneScreen() {
       {
         text: 'Sim',
         onPress: () => {
+          setParticipants((prevState) =>
+            prevState.filter((participant) => participant !== name),
+          )
           Alert.alert('Deletado !!')
         },
       },
