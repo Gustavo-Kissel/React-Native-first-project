@@ -1,4 +1,5 @@
 import {
+  Alert,
   FlatList,
   ScrollView,
   StyleSheet,
@@ -12,11 +13,24 @@ import { Participant } from '../../components/Participant'
 export default function TabOneScreen() {
   const participants = ['Gustavo', 'Teste1', 'Test2']
 
-  function handleParticipantAdd() {
-    console.log('Você clicou no botão de Adicionar!')
+  function handleParticipantAdd(name: string) {
+    if (participants.includes(name)) {
+      return Alert.alert(`O participante com o nome ${name} já existe`)
+    }
+    console.log('participant remove' + name)
   }
 
   function handleParticipantRemove(name: string) {
+    Alert.alert('Remover', `Você deseja mesmo remover ${name}?`, [
+      {
+        text: 'Sim',
+        onPress: () => Alert.alert('Deletado !!'),
+      },
+      {
+        text: 'Não',
+        style: 'cancel',
+      },
+    ])
     console.log('participant remove' + name)
   }
 
@@ -33,7 +47,12 @@ export default function TabOneScreen() {
           placeholderTextColor="#6B6B6B"
         />
 
-        <TouchableOpacity style={styles.button} onPress={handleParticipantAdd}>
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => {
+            handleParticipantAdd('okrl')
+          }}
+        >
           <Text style={styles.buttonText}>+</Text>
         </TouchableOpacity>
       </View>
